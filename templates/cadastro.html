@@ -1,24 +1,77 @@
-<form method="POST">
-  <label>Email:</label><br>
-  <input type="email" name="email" required><br>
+<!DOCTYPE html> 
+<html lang="pt-br">  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - EducaTech</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/templatemo-electric-xtra.css') }}">
+  </head>
+  <body class="cadastro-body">
 
-  <label>Nome:</label><br>
-  <input type="text" name="nome" required><br>
+  {% with mensagens = get_flashed_messages(with_categories=true) %}
+    {% if mensagens %}
+      {% for categoria, msg in mensagens %}
+        <div class="alert {{ categoria }}">
+          {{ msg }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  
+  <div class="campos-cadastro">
+    <form class="cadastro" method="POST" onsubmit="return validarFormulario()">
+      <div class="topo-logo">
+        <img src="/static/image/logo.png" class="logo-svg">
+        <h2 class="h2-log-cad">Seja bem vindo(a)! Cadastre-se para navegar em nossa plataforma</h2>
+      </div>
 
-  <label>Sobrenome:</label><br>
-  <input type="text" name="sobrenome" required><br>
+      <br>
+      <label>Email:</label>
+      <br>
+      <input type="email" name="email" id="email" required>
+      <span id="erroEmail" class="erro"></span>
+      <br>
 
-  <label>Senha:</label><br>
-  <input type="password" name="senha" required><br>
+      <label>Nome:</label>
+      <br>
+      <input type="text" name="nome" required>
+      <br>
 
-  <label>Confirmar Senha:</label><br>
-  <input type="password" name="confirmar" required><br>
+      <label>Sobrenome:</label>
+      <br>
+      <input type="text" name="sobrenome" required>
+      <br><br>
 
-  <label>Área de Interesse:</label><br>
-  <input type="text" name="area" required><br><br>
+      <label>Área de Interesse:</label>
+      <br>
+      <select class="area-de-interesse" name="area" required>
+        <option value="Selecione:">Selecione</option>
+        <option value="UX/UI">UX/UI</option>
+        <option value="Desenvolvimento">Desenvolvimento</option>
+        <option value="QA">QA</option>
+        <option value="Análise de Dados">Análise de Dados</option>
+        <option value="PO">PO</option>
+        <option value="Helpdesk">Helpdesk</option>
+        <option value="Outros">Outros</option>
+      </select>
+      <br><br>
 
-  <input type="submit" value="Cadastrar">
-</form>
+      <label>Senha:</label>
+      <br>
+      <input type="password" name="senha" id="senha" required>
+      <span id="erroSenha" class="erro"></span>
+      <br>
 
+      <label>Confirmar Senha:</label>
+      <br>
+      <input type="password" name="confirmar" id="confirmar" required>
+      <span id="erroConfirmar" class="erro"></span>
+      <br><br>
 
-
+      <button type="submit" value="Cadastrar">Cadastrar</button>
+      <br><br>
+      <p>Já possui uma conta? <a href="/login" class="a-cad-log">Clique aqui!</a></p>
+    </form>
+  </div>
+  <script src="{{ url_for('static', filename='js/templatemo-electric-scripts.js') }}"></script>
+  </body>

@@ -1,11 +1,45 @@
-<form method="POST">
-  <label>Email:</label><br>
-  <input type="email" name="email" required><br>
+<!DOCTYPE html> 
+<html lang="en">  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - EducaTech</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/templatemo-electric-xtra.css') }}">
+  </head>
+  <body class="login-body">
 
-  <label>Senha:</label><br>
-  <input type="password" name="senha" required><br><br>
+      {% with mensagens = get_flashed_messages(with_categories=true) %}
+        {% if mensagens %}
+          {% for categoria, msg in mensagens %}
+            <div class="alert {{ categoria }}">
+              {{ msg }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
 
-  <input type="submit" value="Entrar">
-</form>
+      <div class="campos-login">
+      <form method="POST" class="login">
+        <div class="topo-logo">
+        <img src="/static/image/logo.png" class="logo-svg">
+        <h2 class="h2-log-cad">Bem vindo(a) de volta! Realize o seu login abaixo</h2>
+      </div>
+      <br> <br>
+      <label>Email:</label>
+      <br>
+      <input type="email" name="email" required>
+      <br>
+      <label>Senha:</label>
+      <br>
+      <input type="password" name="senha" required>
+      <br><br>
+
+      <button type="submit" value="Entrar"> Entrar </button>
+      <br><br>
+      <p>Ainda não tem uma conta? <a href="/" class="a-cad-log">Cadastre-se</a></p>
+    </form>
+    </div> 
+          <script src="{{ url_for('static', filename='js/templatemo-electric-scripts.js') }}"></script>
+  </body>
 
 
